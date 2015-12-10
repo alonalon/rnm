@@ -12,7 +12,7 @@ $ npm install -g rnm
 ## Usage
 
 ```js
-rnm file.js file.jsx
+rnm file.jsx file.js
 ```
 
 ## CLI
@@ -27,12 +27,11 @@ $ rnm --help
   Usage
     rnm <oldpath> <newpath>
 
-  Options
-    --wildcard
-
   Examples
-    $ rnm *.jsx .js --wildcard
-    $ rnm file.jsx file.js
+    $ rnm *.jsx .js
+	//=> file1.js, file2.js
+    $ rnm path/file.jsx file.js
+	//=> path/file.js
 ```
 
 

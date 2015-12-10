@@ -3,21 +3,16 @@
 const meow = require('meow');
 const rnm = require('./');
 
-const cli = meow(`
-	Usage
-	 $ rnm <oldpath> <newpath>
-
-	Options
-	  -w, --wildcard
-
-	Examples
-	  $ $ rnm *.js .jsx --wildcard
-	  $ rnm mypath/*.js .jsx -wildcard
-	  $ rnm mypath/myfile.js mynewfile.js
-`, {
-	alias: {
-		w: 'wildcard'
-	}
+const cli = meow({
+	help: [
+		'Usage',
+		' $ rnm <oldpath> <newpath>',
+		'',
+		'Examples',
+		' $ $ rnm *.js .jsx',
+		' $ rnm mypath/*.js .jsx',
+		' $ rnm mypath/myfile.js mynewfile.js'
+	]
 });
 
 const input = cli.input;
@@ -27,4 +22,4 @@ if (input.length < 2) {
 	process.exit(1);
 }
 
-rnm(input, cli.flags);
+rnm(input);
