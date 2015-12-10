@@ -5,16 +5,30 @@ var Promise = require('pinkie-promise');
 var path = require('path');
 var globby = require('globby');
 
+function doesExist(file) {
+	try {
+		fs.statSync(file);
+		return true;
+	} catch (err) {
+		return !(err && err.code === 'ENOENT');
+	}
+}
+
 function execute(file, replace) {
 	var reg = /^\./g;
 	var match = reg.test(replace);
 	var newFile = match ? path.basename(file, path.extname(file)) + replace : replace;
+	newFile = path.join(path.dirname(file), newFile);
+	var fileExists = doesExist(newFile);
+
+	if (fileExists) {
+		return Promise.reject(new Error('file already exists'));
+	}
 
 	if (file.length === 0 || replace.length === 0) {
 		return Promise.reject(new Error('file or replace name is required'));
 	}
 
-	newFile = path.join(path.dirname(file), newFile);
 	return pify(fs.rename)(file, newFile);
 }
 

@@ -13,6 +13,7 @@ $ npm install -g rnm
 
 ```js
 rnm file.jsx file.js
+//=> file.js
 ```
 
 ## CLI
@@ -29,9 +30,7 @@ $ rnm --help
 
   Examples
     $ rnm *.jsx .js
-	//=> file1.js, file2.js
     $ rnm path/file.jsx file.js
-	//=> path/file.js
 ```
 
 
