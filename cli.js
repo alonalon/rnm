@@ -27,4 +27,4 @@ if (input.length < 2) {
 	process.exit(1);
 }
 
-rnm(cli.input, cli.flags);
+rnm(input, cli.flags);
